@@ -83,51 +83,109 @@ const json = XLSX.utils.sheet_to_json(
 worksheet,
 {header:1}
 );
+//json.forEach(row=>console.log(row));
+exportData = [];
 
-exportData=[];
+let currentState = "";
 
 json.forEach((row,index)=>{
 
 if(index===0) return;
 
-if(!row || !row[0]) return;
+if(!row) return;
 
-const fullName = String(row[0]).trim();
 
-const result = splitName(fullName);
+let firstName = "";
+let lastName = "";
 
-const position = row[1] || "";
 
-const email = row[2] || "";
+// CASE 1
+// Hiwalay na First at Last Name
+if(row[1] && row[1].toString().trim() !== ""){
 
-const school = row[3] || "";
+firstName = row[0].toString().trim();
 
-const district = row[4] || "";
+lastName = row[1].toString().trim();
 
-const state = row[5] || "";
+}
+
+
+// CASE 2
+// Delgado, Maria
+
+else if(row[0] && row[0].includes(",")){
+
+const parts = row[0].split(",");
+
+lastName = parts[0].trim();
+
+firstName = parts[1] ? parts[1].trim() : "";
+
+}
+
+
+// CASE 3
+// Maria Delgado
+
+else{
+
+const parts = row[0].toString().trim().split(" ");
+
+lastName = parts.pop() || "";
+
+firstName = parts.join(" ");
+
+}
+
+
+
+const position = row[2] || "";
+
+const email = row[3] || "";
+
+const school = row[4] || "";
+
+const district = row[5] || "";
+
+
+
+// State Auto Fill
+
+if(row[6] && row[6].toString().trim() !== ""){
+
+currentState = row[6].toString().trim();
+
+}
+
+const state = currentState;
+
+
 
 exportData.push({
 
-title: result.title,
+title:"",
 
-firstName: result.firstName,
+firstName,
 
-lastName: result.lastName,
+lastName,
 
-position: position,
+position,
 
-email: email,
+email,
 
-school: school,
+school,
 
-district: district,
+district,
 
-state: state
-
-});
+state
 
 });
 
+
+});
+
+
+//preview data
 const preview = exportData.slice(0,10);
 
 let html = "";
