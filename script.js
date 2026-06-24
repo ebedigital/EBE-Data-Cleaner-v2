@@ -50,6 +50,7 @@ lastName
 
 processBtn.addEventListener("click",()=>{
 
+
 const file = fileInput.files[0];
 
 if(!file){
@@ -88,23 +89,25 @@ if(index===0) return;
 
 if(!row || !row[0]) return;
 
-const firstName = row[0] || "";
+const fullName = String(row[0]).trim();
 
-const lastName = row[1] || "";
+const result = splitName(fullName);
 
-const email = row[2] || "";
+const email = row[1] || "";
 
-const school = row[3] || "";
+const school = row[2] || "";
 
-const district = row[4] || "";
+const district = row[3] || "";
 
-const state = row[5] || "";
+const state = row[4] || "";
 
 exportData.push({
 
-firstName,
+title: result.title,
 
-lastName,
+firstName: result.firstName,
+
+lastName: result.lastName,
 
 email,
 
