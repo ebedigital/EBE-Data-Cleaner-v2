@@ -83,7 +83,6 @@ worksheet,
 exportData=[];
 
 json.forEach((row,index)=>{
-console.log(row);
 
 if(index===0) return;
 
@@ -93,13 +92,17 @@ const fullName = String(row[0]).trim();
 
 const result = splitName(fullName);
 
-const email = row[1] || "";
+const position = row[1] || "";
 
-const school = row[2] || "";
+const email = row[2] || "";
 
-const district = row[3] || "";
+const school = row[3] || "";
 
-const state = row[4] || "";
+const district = row[4] || "";
+
+const state = row[5] || "";
+
+
 
 exportData.push({
 
@@ -109,13 +112,15 @@ firstName: result.firstName,
 
 lastName: result.lastName,
 
-email,
+position: position,
 
-school,
+email: email,
 
-district,
+school: school,
 
-state
+district: district,
+
+state: state
 
 });
 
@@ -146,7 +151,6 @@ html += `
 </tr>
 
 `;
-
 });
 
 document.getElementById("resultBody").innerHTML = html;
