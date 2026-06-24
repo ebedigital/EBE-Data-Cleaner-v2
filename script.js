@@ -14,24 +14,27 @@ const titleMap = {
 "rev.":"Rev."
 
 };
-
 function splitName(fullName){
 
-fullName = fullName.trim();
+fullName = String(fullName).trim();
 
-let title = "";
+if(fullName.includes(",")){
 
-let parts = fullName.split(" ");
+const parts = fullName.split(",");
 
-const firstWord = parts[0].toLowerCase();
+return{
 
-if(titleMap[firstWord]){
+title:"",
 
-title = titleMap[firstWord];
+firstName: parts[1] ? parts[1].trim() : "",
 
-parts.shift();
+lastName: parts[0] ? parts[0].trim() : ""
+
+};
 
 }
+
+const parts = fullName.split(" ");
 
 const lastName = parts.pop() || "";
 
@@ -39,14 +42,15 @@ const firstName = parts.join(" ");
 
 return{
 
-title,
+title:"",
+
 firstName,
+
 lastName
 
 };
 
 }
-
 
 processBtn.addEventListener("click",()=>{
 
@@ -102,8 +106,6 @@ const district = row[4] || "";
 
 const state = row[5] || "";
 
-
-
 exportData.push({
 
 title: result.title,
@@ -151,7 +153,11 @@ html += `
 </tr>
 
 `;
+
 });
+
+document.getElementById("resultBody").innerHTML = html;
+
 
 document.getElementById("resultBody").innerHTML = html;
 
