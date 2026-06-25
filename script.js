@@ -92,7 +92,7 @@ firstName = parts.join(" ");
 
 }
 
-}
+
 
 const position = row[1] || "";
 
