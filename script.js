@@ -92,7 +92,7 @@ firstName = parts.join(" ");
 
 }
 
-
+}
 
 const position = row[1] || "";
 
@@ -116,21 +116,21 @@ const state = currentState;
 
 
 
-exportData.push({
+eexportData.push({
 
-firstName,
+firstName: firstName,
 
-lastName,
+lastName: lastName,
 
-position,
+position: position,
 
-email,
+email: email,
 
-school,
+school: school,
 
-district,
+district: district,
 
-state
+state: state
 
 });
 
@@ -244,7 +244,6 @@ reader.readAsArrayBuffer(file);
 
 downloadBtn.addEventListener("click",()=>{
 
-
 let csv =
 
 "First Name,Last Name,Position,Email,School,District,State\n";
@@ -252,28 +251,29 @@ let csv =
 
 exportData.forEach(item=>{
 
-
 csv +=
 
-`"${item.firstName}","${item.lastName}","${item.position}","${item.email}","${item.school}","${item.district}","${item.state}"\n`;
-
-
+`"${item.firstName}",
+"${item.lastName}",
+"${item.position}",
+"${item.email}",
+"${item.school}",
+"${item.district}",
+"${item.state}"\n`;
 
 });
 
 
 const blob = new Blob([csv],{
 
-type:"text/csv"
+type:"text/csv;charset=utf-8;"
 
 });
 
 
 const url = URL.createObjectURL(blob);
 
-
 const a = document.createElement("a");
-
 
 a.href=url;
 
@@ -281,11 +281,9 @@ a.download="EBE_Cleaned_Data.csv";
 
 a.click();
 
-
 URL.revokeObjectURL(url);
 
 
-});
 
 
 
