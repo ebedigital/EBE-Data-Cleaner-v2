@@ -1,190 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EBE Data Cleaner</title>
-
   <link rel="stylesheet" href="style.css">
 </head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <h2>EBE Tools</h2>
+      <ul>
+        <li class="active">Data Cleaner</li>
+        <li>History</li>
+        <li>Settings</li>
+        <li>About</li>
+      </ul>
+    </aside>
 
-<body></body>
+    <main class="content">
+      <header class="page-header">
+        <h1>EBE Data Cleaner</h1>
+        <p>Upload an Excel or CSV file and automatically clean and organize your contacts.</p>
+      </header>
 
-<div class="app">
+      <section class="upload-box" id="dropArea" aria-label="File upload area">
+        <div class="upload-icon" aria-hidden="true">+</div>
+        <h2>Upload Excel or CSV</h2>
+        <p>Drag and drop your file here</p>
+        <p>or</p>
+        <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" hidden>
+        <button id="browseBtn" type="button">Choose File</button>
+        <p id="fileName">No file selected</p>
+      </section>
 
-  <aside class="sidebar">
+      <div class="buttons">
+        <button id="processBtn" type="button">Clean & Split</button>
+        <button id="downloadBtn" type="button">Download CSV</button>
+        <button id="downloadExcelBtn" type="button">Download Excel</button>
+      </div>
 
-    <h2>EBE Tools</h2>
+      <div id="status" role="status" aria-live="polite"></div>
 
-    <ul>
+      <section class="stats" aria-label="Cleaning summary">
+        <div class="card">
+          <h2 id="totalContacts">0</h2>
+          <p>Total Contacts</p>
+        </div>
+        <div class="card">
+          <h2 id="totalSchools">0</h2>
+          <p>Schools</p>
+        </div>
+        <div class="card">
+          <h2 id="totalDistricts">0</h2>
+          <p>Districts</p>
+        </div>
+      </section>
 
-      <li class="active">📄 Data Cleaner</li>
-
-      <li>🕒 History</li>
-
-      <li>⚙️ Settings</li>
-
-      <li>ℹ️ About</li>
-
-    </ul>
-
-  </aside>
-
-
-
-  <main class="content">
-
-    <h1>EBE Data Cleaner</h1>
-
-    <p>
-
-      Upload Excel or CSV file and automatically clean and organize your contacts.
-
-    </p>
-
-
-  <div class="upload-box" id="dropArea">
-
-  <div class="upload-icon">
-    📁
+      <section class="preview-card">
+        <h3>Preview (First 10 Rows)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>School</th>
+                <th>District</th>
+                <th>State</th>
+              </tr>
+            </thead>
+            <tbody id="resultBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
   </div>
 
-  <h2>Upload Excel or CSV</h2>
-
-  <p>Drag & Drop your file here</p>
-
-  <p>or</p>
-
-  <input
-  type="file"
-  id="fileInput"
-  accept=".xlsx,.csv"
-  hidden>
-
-  <button id="browseBtn">
-
-    Choose File
-
-  </button>
-
-  <p id="fileName">
-
-  No file selected
-
-  </p>
-
-</div>
-
-
-    <div class="buttons">
-
-      <button id="processBtn">
-
-      ✨ Clean & Split
-
-      </button>
-
-      <button id="downloadBtn">
-
-      ⬇ Download CSV
-
-      </button>
-
-   <button id="downloadExcelBtn">
-
-    ⬇ Download Excel
-
-    </button>
-    
- </div>
-
-<div id="status"></div>
-
-
-<div class="stats">
-
-<div class="card">
-
-<h2 id="totalContacts">0</h2>
-
-<p>Total Contacts</p>
-
-</div>
-
-
-<div class="card">
-
-<h2 id="totalSchools">0</h2>
-
-<p>Schools</p>
-
-</div>
-
-
-<div class="card">
-
-<h2 id="totalDistricts">0</h2>
-
-<p>Districts</p>
-
-</div>
-
-
-    </div>
-
-
-    <div class="preview-card">
-
-      <h3>
-
-      Preview (First 10 Rows)
-
-      </h3>
-
-      <table>
-
-        <thead>
-
-        <tr>
-
-        <th>First Name</th>
-
-        <th>Last Name</th>
-
-        <th>Email</th>
-
-        <th>School</th>
-
-        <th>District</th>
-
-        <th>State</th>
-
-        </tr>
-
-        </thead>
-
-
-        <tbody id="resultBody">
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-
-  </main>
-
-</div>
-
-
-
-
-
-
-<script src="xlsx.full.min.js"></script>
-<script src="script.js"></script>
-
+  <script src="xlsx.full.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
